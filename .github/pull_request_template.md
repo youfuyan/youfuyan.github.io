@@ -1,15 +1,22 @@
-# Description
+# Summary
 
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Describe what changed and why.
 
-Fixes # (issue)
+## Content Safety
 
-## Type of change
+- [ ] Public resume remains the source of truth for dates, titles, education, awards, and public claims.
+- [ ] Projected metrics are labeled as projected.
+- [ ] Program-level metrics are not presented as solely personal impact.
+- [ ] No internal Amazon service names, identifiers, prompts, dashboards, runbooks, or private diagrams are exposed.
 
-<!-- Please delete options that are not relevant.-->
+## Checks
 
+- [ ] `npm run typecheck`
+- [ ] `npm run lint`
+- [ ] `npm run build`
+- [ ] `npm run test:e2e`
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+## Deployment Notes
+
+- [ ] GitHub Pages source remains set to GitHub Actions.
+- [ ] Static export still works at the root user-site path with no `basePath`.

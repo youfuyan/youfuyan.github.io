@@ -21,6 +21,8 @@
 - `/resume/` provides a readable HTML summary and links to
   `public/Youfu_Yan_Public_Resume.pdf`, generated from the latest public resume
   facts without publishing a phone number.
+- Obsolete CRA source files, old build artifacts, prompt handoff files, old Docker
+  scaffolding, and the old GitHub feed output are removed from the rebuild branch.
 
 ## Follow-up assets
 
