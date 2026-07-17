@@ -26,15 +26,15 @@ export default function ResearchPage() {
       />
       <Container as="section" className="pb-20">
         {study ? (
-          <article className="max-w-3xl border border-line bg-white p-6 shadow-subtle">
-            <p className="text-sm font-semibold text-accent">{study.category}</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-normal text-ink">
+          <article className="editorial-card max-w-3xl border border-line bg-white p-6 sm:p-8">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.1em] text-accent">{study.category}</p>
+            <h2 className="mt-5 font-display text-3xl font-semibold leading-tight tracking-normal text-ink">
               {study.title}
             </h2>
             <p className="mt-3 text-base leading-7 text-muted">{study.summary}</p>
             <Link
               href={routes.researchKnownet}
-              className="mt-6 inline-flex rounded-md bg-ink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable mt-6 inline-flex rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               Read KNOWNet summary
             </Link>

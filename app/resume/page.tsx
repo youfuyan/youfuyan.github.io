@@ -27,13 +27,13 @@ export default function ResumePage() {
           <div className="flex flex-wrap gap-3 border-y border-line py-5 text-sm">
             <Link
               href={`mailto:${profile.email}`}
-              className="font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               {profile.email}
             </Link>
             <Link
               href={profile.links.linkedin}
-              className="font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
               target="_blank"
               rel="noreferrer"
             >
@@ -41,7 +41,7 @@ export default function ResumePage() {
             </Link>
             <Link
               href={profile.links.github}
-              className="font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
               target="_blank"
               rel="noreferrer"
             >
@@ -205,7 +205,7 @@ export default function ResumePage() {
             </p>
             <Link
               href="/Youfu_Yan_Public_Resume.pdf"
-              className="mt-5 inline-flex rounded-md bg-ink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable mt-5 inline-flex rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               Download PDF
             </Link>

@@ -118,7 +118,7 @@ export default function KnownetPage() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+                        className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -140,7 +140,7 @@ export default function KnownetPage() {
             </section>
           </div>
 
-          <aside className="h-fit border border-line bg-white p-5 shadow-subtle">
+          <aside className="h-fit border border-line bg-white p-6">
             <SectionHeading eyebrow="Metadata" title="Publication details" />
             <dl className="mt-6 space-y-5 text-sm">
               <div>
@@ -173,7 +173,7 @@ export default function KnownetPage() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+                        className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
                         target="_blank"
                         rel="noreferrer"
                       >

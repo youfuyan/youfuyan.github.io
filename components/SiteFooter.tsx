@@ -13,8 +13,8 @@ const footerLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line bg-white">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-5 py-8 text-sm text-muted sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+    <footer className="border-t border-dark-line bg-ink">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-5 py-8 text-sm text-dark-muted sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
         <p>
           © {new Date().getFullYear()} {profile.name}. Built as a static site for
           GitHub Pages.
@@ -25,7 +25,7 @@ export function SiteFooter() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-medium text-ink transition-colors hover:text-accent focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+                  className="pressable font-mono text-xs font-medium uppercase tracking-[0.08em] text-white hover:text-blue-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                 >

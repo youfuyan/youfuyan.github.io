@@ -7,13 +7,13 @@ export default defineConfig({
     timeout: 5_000,
   },
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:4175",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run preview",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
+    command: "PORT=4175 npm run preview",
+    url: "http://127.0.0.1:4175",
+    reuseExistingServer: false,
     timeout: 30_000,
   },
   projects: [
