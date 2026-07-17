@@ -20,22 +20,22 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden border-b border-dark-line bg-ink text-white">
         <HeroParticleFlowLoader />
         <HeroSignalBackground />
-        <Container className="hero-content relative z-10 pt-14 sm:pt-20">
-          <div className="max-w-4xl pb-14 sm:pb-16 lg:max-w-3xl">
+        <Container className="hero-content relative z-10 pt-10 sm:pt-20">
+          <div className="max-w-4xl pb-8 sm:pb-16 lg:max-w-3xl">
             <p className="hero-reveal hero-delay-1 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-blue-200">
               <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
               {profile.hero.eyebrow}
             </p>
-            <h1 className="hero-reveal hero-delay-2 mt-6 max-w-3xl text-[2.65rem] font-semibold leading-[1.03] tracking-normal text-white sm:text-6xl sm:leading-[1.02]">
+            <h1 className="hero-reveal hero-delay-2 mt-4 max-w-3xl text-[2.375rem] font-semibold leading-[1.05] tracking-normal text-white sm:mt-6 sm:text-6xl sm:leading-[1.02]">
               {profile.hero.title}
             </h1>
-            <p className="hero-reveal hero-delay-3 mt-6 max-w-3xl text-lg leading-8 text-dark-muted sm:text-xl">
+            <p className="hero-reveal hero-delay-3 mt-4 max-w-3xl text-base leading-7 text-dark-muted sm:mt-6 sm:text-xl sm:leading-8">
               {profile.hero.description}
             </p>
-            <p className="hero-reveal hero-delay-4 mt-5 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-blue-200">
+            <p className="hero-reveal hero-delay-4 mt-4 font-mono text-xs font-semibold uppercase tracking-[0.08em] text-blue-200 sm:mt-5">
               {profile.hero.stack}
             </p>
-            <div className="hero-reveal hero-delay-4 mt-8 flex flex-wrap gap-3">
+            <div className="hero-reveal hero-delay-4 mt-6 flex flex-wrap gap-3 sm:mt-8">
               <Link
                 href={routes.work}
                 className="highlight-button pressable rounded-sm bg-white px-4 py-3 text-sm font-semibold text-ink hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
