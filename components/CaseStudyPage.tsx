@@ -19,7 +19,7 @@ function DetailSection({
 
   return (
     <section className="border-t border-line py-8">
-      <h2 className="text-xl font-semibold tracking-normal text-ink">{title}</h2>
+      <h2 className="font-display text-2xl font-semibold tracking-normal text-ink">{title}</h2>
       <div className="mt-4 space-y-4 text-base leading-7 text-muted">
         {items.map((item) => (
           <p key={item}>{item}</p>
@@ -41,30 +41,30 @@ export function CaseStudyPage({
       <Container as="section" className="py-14 sm:py-20">
         <Link
           href={routes.work}
-          className="text-sm font-semibold text-accent transition-colors hover:text-ink focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+          className="pressable text-sm font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
         >
           Back to selected work
         </Link>
         <div className="mt-8 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="font-mono text-xs font-semibold uppercase tracking-[0.1em] text-accent">
             {study.category}
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-normal text-ink sm:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-normal text-ink sm:text-5xl">
             {study.title}
           </h1>
           <p className="mt-5 text-xl leading-8 text-muted">{study.summary}</p>
         </div>
-        <dl className="mt-10 grid gap-4 border-y border-line py-6 text-sm sm:grid-cols-3">
-          <div>
-            <dt className="font-semibold text-ink">Role</dt>
+        <dl className="mt-10 grid border-l border-t border-line bg-white text-sm sm:grid-cols-3">
+          <div className="border-b border-r border-line p-5 sm:p-6">
+            <dt className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-ink">Role</dt>
             <dd className="mt-2 leading-6 text-muted">{study.role}</dd>
           </div>
-          <div>
-            <dt className="font-semibold text-ink">Timeframe</dt>
+          <div className="border-b border-r border-line p-5 sm:p-6">
+            <dt className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-ink">Timeframe</dt>
             <dd className="mt-2 leading-6 text-muted">{study.period}</dd>
           </div>
-          <div>
-            <dt className="font-semibold text-ink">Outcome</dt>
+          <div className="border-b border-r border-line p-5 sm:p-6">
+            <dt className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-ink">Outcome</dt>
             <dd className="mt-2 leading-6 text-muted">{study.outcome}</dd>
           </div>
         </dl>
@@ -109,7 +109,7 @@ export function CaseStudyPage({
             <div className="border-t border-line pt-8">
               <Link
                 href={next.href}
-                className="inline-flex rounded-md bg-ink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+                className="pressable inline-flex rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
               >
                 Next: {next.label}
               </Link>

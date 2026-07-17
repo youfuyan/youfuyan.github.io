@@ -4,8 +4,10 @@
 
 :root {
   color-scheme: light;
-  background: #f8fafc;
-  color: #111827;
+  background: #f4f5f7;
+  color: #151714;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 html {
@@ -14,13 +16,342 @@ html {
 
 body {
   min-width: 320px;
-  background:
-    linear-gradient(180deg, rgba(233, 240, 255, 0.5), rgba(248, 250, 252, 0) 360px),
-    #f8fafc;
+  background: #f4f5f7;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, system-ui,
     sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+main:focus {
+  outline: none;
+}
+
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.pressable {
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 180ms var(--ease-out);
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+.highlight-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.highlight-button::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -45%;
+  z-index: -1;
+  width: 35%;
+  content: "";
+  background: rgb(49 91 214 / 18%);
+  transform: skewX(-20deg);
+  transition: left 360ms var(--ease-out);
+}
+
+.button-arrow {
+  display: inline-block;
+  margin-left: 0.25rem;
+  transition: transform 160ms var(--ease-out);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.35rem;
+  left: 0.75rem;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 140ms var(--ease-out);
+}
+
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: hero-rise 420ms var(--ease-out) forwards;
+}
+
+.hero-signal-background {
+  color: rgb(174 183 196 / 13%);
+}
+
+.hero-particle-flow {
+  position: absolute;
+  inset: 0 0 0 52%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-signal-layer {
+  z-index: 1;
+}
+
+.hero-particle-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out);
+}
+
+.hero-particle-canvas[data-ready="true"] {
+  opacity: 0.85;
+}
+
+.hero-signal-grid {
+  color: rgb(174 183 196 / 14%);
+  stroke-width: 1;
+  transform-origin: center;
+  animation: signal-grid-drift 24s linear infinite alternate;
+}
+
+.hero-signal-stars {
+  color: rgb(255 255 255 / 46%);
+  fill: currentColor;
+}
+
+.hero-signal-stars circle {
+  animation: signal-star 4.8s ease-in-out infinite;
+}
+
+.hero-signal-stars circle:nth-child(2n) {
+  animation-delay: -1.8s;
+}
+
+.hero-signal-stars circle:nth-child(3n) {
+  animation-delay: -3.2s;
+}
+
+.hero-signal-trace {
+  animation: signal-float 7s ease-in-out infinite;
+}
+
+.hero-signal-caption,
+.hero-signal-label {
+  fill: rgb(191 219 254 / 58%);
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hero-signal-path-base,
+.hero-signal-path-flow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-signal-path-base {
+  stroke: rgb(174 183 196 / 22%);
+  stroke-width: 1;
+}
+
+.hero-signal-path-flow {
+  stroke: rgb(96 165 250 / 72%);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 15;
+  transition: opacity 300ms ease;
+  animation: signal-flow 12s linear infinite;
+}
+
+.hero-particle-flow[data-ready="true"] + .hero-signal-layer .hero-signal-path-flow {
+  opacity: 0.08;
+}
+
+.hero-signal-point {
+  fill: #60a5fa;
+}
+
+.hero-signal-ring {
+  fill: none;
+  stroke: rgb(96 165 250 / 35%);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: signal-ring 4s var(--ease-out) infinite;
+}
+
+.hero-signal-point-2 .hero-signal-ring {
+  animation-delay: -1s;
+}
+
+.hero-signal-point-3 .hero-signal-ring {
+  animation-delay: -2s;
+}
+
+.hero-signal-point-4 .hero-signal-ring {
+  animation-delay: -3s;
+}
+
+.hero-delay-1 {
+  animation-delay: 40ms;
+}
+
+.hero-delay-2 {
+  animation-delay: 80ms;
+}
+
+.hero-delay-3 {
+  animation-delay: 120ms;
+}
+
+.hero-delay-4 {
+  animation-delay: 160ms;
+}
+
+.hero-delay-5 {
+  animation-delay: 200ms;
+}
+
+.editorial-card {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.editorial-card-arrow {
+  transition:
+    transform 160ms var(--ease-out),
+    color 120ms ease,
+    border-color 160ms ease;
+}
+
+details[open] .mobile-menu-panel {
+  transform-origin: top right;
+  animation: menu-in 160ms var(--ease-out);
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes signal-grid-drift {
+  to {
+    transform: translate3d(18px, 10px, 0);
+  }
+}
+
+@keyframes signal-star {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes signal-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes signal-flow {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+@keyframes signal-ring {
+  0%,
+  45% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .highlight-button:hover::before,
+  .highlight-button:focus-visible::before {
+    left: 115%;
+  }
+
+  .pressable:hover .button-arrow {
+    transform: translateX(3px);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .editorial-card:hover {
+    background-color: #f8f9fb;
+    border-color: #b8c4d8;
+  }
+
+  .editorial-card:hover .editorial-card-arrow {
+    color: #315bd6;
+    border-color: #315bd6;
+    transform: translate(2px, -2px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-particle-flow {
+    display: none;
+  }
+
+  .hero-signal-trace {
+    display: none;
+  }
 }
 
 ::selection {
@@ -36,5 +367,28 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-signal-grid,
+  .hero-signal-stars circle,
+  .hero-signal-trace,
+  .hero-signal-path-flow,
+  .hero-signal-ring {
+    animation: none;
+  }
+
+  .hero-particle-canvas {
+    display: none;
+  }
+
+  .editorial-card:hover,
+  .editorial-card:hover .editorial-card-arrow,
+  .pressable:active {
+    transform: none;
   }
 }

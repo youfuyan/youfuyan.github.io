@@ -8,11 +8,11 @@ export function SectionHeading({ eyebrow, title, description }: SectionHeadingPr
   return (
     <div className="max-w-3xl">
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-accent">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-2xl font-semibold tracking-normal text-ink sm:text-3xl">
+      <h2 className="font-display text-3xl font-semibold leading-tight tracking-normal text-ink sm:text-4xl">
         {title}
       </h2>
       {description ? (

@@ -57,23 +57,26 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3 pt-3">
             <Link
               href={routes.work}
-              className="rounded-md bg-ink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               View selected work
             </Link>
             <Link
               href={routes.resume}
-              className="rounded-md border border-line bg-white px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+              className="pressable rounded-sm border border-line bg-white px-4 py-3 text-sm font-semibold text-ink hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
             >
               Read resume
             </Link>
           </div>
         </div>
         <section className="mt-14 max-w-3xl border-t border-line pt-8">
-          <h2 className="text-xl font-semibold tracking-normal text-ink">Education</h2>
-          <div className="mt-5 grid gap-4">
+          <h2 className="font-display text-2xl font-semibold tracking-normal text-ink">Education</h2>
+          <div className="mt-5 grid border-l border-t border-line">
             {profile.education.map((item) => (
-              <article key={`${item.school}-${item.degree}`} className="bg-white p-5 ring-1 ring-line">
+              <article
+                key={`${item.school}-${item.degree}`}
+                className="border-b border-r border-line bg-white p-5"
+              >
                 <h3 className="font-semibold text-ink">{item.school}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted">
                   {item.degree}

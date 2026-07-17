@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import sharp from "sharp";
 
 const routes = [
   "/",
@@ -78,6 +79,108 @@ test("mobile and desktop layouts avoid horizontal overflow", async ({ page }) =>
     }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
   }
+});
+
+test("mobile navigation is compact and keyboard accessible", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 900 });
+  await page.goto("/");
+
+  const menu = page.getByText("Menu", { exact: true });
+  await expect(menu).toBeVisible();
+  await menu.focus();
+  await expect(menu).toBeFocused();
+  await page.keyboard.press("Enter");
+
+  const mobileNavigation = page.getByRole("navigation", {
+    name: "Mobile navigation",
+  });
+  await expect(mobileNavigation).toBeVisible();
+  await expect(
+    mobileNavigation.getByRole("link", { name: "Resume", exact: true }),
+  ).toBeVisible();
+  await expect(
+    mobileNavigation.getByRole("link", { name: "GitHub", exact: true }),
+  ).toBeVisible();
+});
+
+test("motion enhancements preserve content with reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect(
+    page.getByRole("heading", {
+      name: "I build production AI and backend systems that ship.",
+    }),
+  ).toBeVisible();
+  await expect(page.getByLabel("Impact snapshot")).toBeVisible();
+  await expect(page.locator(".hero-signal-path-flow")).toHaveCSS(
+    "animation-name",
+    "none",
+  );
+});
+
+test("mobile hero reveals the impact snapshot in the first viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const snapshot = page.getByLabel("Impact snapshot");
+  const box = await snapshot.boundingBox();
+  expect(box).not.toBeNull();
+  expect(box?.y).toBeLessThan(812);
+});
+
+test("desktop WebGL flow renders pixels while mobile keeps the SVG fallback", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 700 });
+  await page.goto("/");
+
+  const canvas = page.locator('.hero-particle-canvas[data-ready="true"]');
+  await expect(canvas).toBeVisible();
+
+  await page.locator(".hero-signal-background").evaluate((element) => {
+    (element as HTMLElement).style.visibility = "hidden";
+  });
+  await page.locator(".hero-content").evaluate((element) => {
+    (element as HTMLElement).style.visibility = "hidden";
+  });
+  await canvas.evaluate((element) => {
+    const canvasElement = element as HTMLCanvasElement;
+    canvasElement.style.opacity = "1";
+    canvasElement.style.transition = "none";
+  });
+
+  const firstFrame = await canvas.screenshot();
+  await page.waitForTimeout(250);
+  const secondFrame = await canvas.screenshot();
+  const [firstPixels, secondPixels] = await Promise.all(
+    [firstFrame, secondFrame].map((frame) =>
+      sharp(frame).ensureAlpha().raw().toBuffer({ resolveWithObject: true }),
+    ),
+  );
+
+  expect(firstPixels.info.width).toBeGreaterThan(0);
+  expect(firstPixels.info.height).toBeGreaterThan(0);
+  expect(secondPixels.data.length).toBe(firstPixels.data.length);
+
+  let changedPixels = 0;
+  for (let index = 0; index < firstPixels.data.length; index += 4) {
+    const difference =
+      Math.abs(firstPixels.data[index] - secondPixels.data[index]) +
+      Math.abs(firstPixels.data[index + 1] - secondPixels.data[index + 1]) +
+      Math.abs(firstPixels.data[index + 2] - secondPixels.data[index + 2]);
+
+    if (difference > 12) {
+      changedPixels += 1;
+    }
+  }
+
+  expect(changedPixels).toBeGreaterThan(20);
+
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.reload();
+  await expect(page.locator(".hero-particle-canvas")).toHaveCount(0);
+  await expect(page.locator(".hero-signal-background")).toBeVisible();
 });
 
 test("custom 404 renders", async ({ page }) => {
