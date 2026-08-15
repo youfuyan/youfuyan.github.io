@@ -8,9 +8,11 @@ export const dynamic = "force-static";
 const routeList = [
   routes.home,
   routes.work,
+  routes.agentEngineeringWorkflows,
   routes.aiImageMatting,
   routes.multiRegionLaunch,
   routes.eventDrivenNotifications,
+  routes.research,
   routes.researchKnownet,
   routes.about,
   routes.resume,

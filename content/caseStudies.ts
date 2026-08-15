@@ -1,5 +1,6 @@
 export type CaseStudy = {
   slug:
+    | "agent-engineering-workflows"
     | "ai-image-matting"
     | "multi-region-launch"
     | "event-driven-notifications"
@@ -31,23 +32,70 @@ export type CaseStudy = {
 
 export const caseStudies: readonly CaseStudy[] = [
   {
+    slug: "agent-engineering-workflows",
+    category: "Agent systems",
+    title: "Making AI-agent workflows evidence-gated",
+    summary:
+      "Helped turn coding and production-support agents into reusable engineering workflows with deterministic verification, operational evidence, and explicit human approval boundaries.",
+    role: "Workflow designer and contributor across implementation, evaluation, and operational safety",
+    period: "2026",
+    tags: ["Agent tool use", "Evaluation", "Playwright", "CloudWatch", "Human in the loop"],
+    outcome:
+      "Established reusable patterns for agent-assisted implementation, browser testing, review follow-ups, and production diagnosis while keeping merge, rollout, and write operations under human control.",
+    sections: {
+      context: [
+        "Cross-service engineering work spans architecture, implementation, test generation, review feedback, deployment checks, and operational analysis. Agents can help across that path, but only if their output is inspectable and bounded.",
+        "Production-support automation adds a second constraint: useful diagnosis often needs real evidence, while state-changing actions must remain deliberate and human-owned.",
+      ],
+      problem: [
+        "A plausible agent response is not enough to merge code or act on a production system. The workflow needed deterministic checks, evidence from the running product, and clear authority boundaries.",
+        "The same pattern had to be reusable across coding and operational work without encoding private data or making unrestricted writes.",
+      ],
+      ownership: [
+        "Contributed to an agent-driven build, deploy, and browser-test loop with user-interface and observability assertions.",
+        "Authored an upgrade to a production-support agent workflow with identifier-only diagnosis, read-only production checks, evidence-based routing, and human approval before writes.",
+        "Coordinated parallel agent work across implementation, testing, design iteration, and review follow-ups.",
+      ],
+      approach: [
+        "Required deterministic builds, targeted test coverage, browser smoke tests, and trace or metric evidence before an agent-authored change could advance.",
+        "Made diagnosis read-only by default and separated evidence collection from any action that could change production state.",
+        "Used benchmark scenarios to evaluate whether the support workflow routed ambiguous cases safely and produced evidence a human could verify.",
+      ],
+      result: [
+        "The resulting workflows supported faster parallel engineering while preserving human ownership of merge and rollout decisions.",
+        "Evidence gates also surfaced a semantic product-policy defect that conventional tests and automated security analysis had not caught, preventing the change from advancing until it was corrected.",
+      ],
+      decisions: [
+        "Treated agent output as a proposal backed by artifacts, not as authority.",
+        "Kept production access read-only unless a human explicitly approved the next action.",
+        "Evaluated the workflow on end-to-end outcomes rather than only prompt quality.",
+      ],
+      lessons: [
+        "Reliable agent systems look less like autonomous demos and more like well-designed engineering processes: scoped tools, observable evidence, deterministic checks, and explicit control boundaries.",
+      ],
+    },
+    technologies: ["Agent workflows", "Playwright", "CloudWatch", "CI/CD", "Evaluation harnesses", "Human approval"],
+    publicSafetyNote:
+      "Internal prompts, production identifiers, account details, private traces, and write procedures are intentionally omitted.",
+  },
+  {
     slug: "ai-image-matting",
     category: "AI/ML systems",
     title: "Evaluating an in-house image-matting platform",
     summary:
-      "Designed a GPU inference and evaluation workflow to compare five backends and recommend a lower-cost AWS-native alternative to a third-party API.",
+      "Designed a GPU inference and evaluation workflow to compare multiple backends and recommend an AWS-native alternative to a third-party image-processing API.",
     role: "Technical owner across architecture, benchmarking, evaluation, and migration proposal",
     period: "2026",
     tags: ["SageMaker", "Bedrock", "Python", "GPU inference", "LLM evaluation"],
     outcome:
-      "Designed and drove an AWS-native background-removal migration plan for approximately 1M uncached image requests per month, projected to reduce annual run-rate by about $96K, or approximately 80%, versus the third-party API based on current traffic and public SageMaker pricing.",
+      "Produced the runtime and evaluation evidence for an AWS-native image-matting direction, then advanced a vendor-neutral integration through pre-production validation.",
     sections: {
       context: [
-        "Several creator workflows depended on a third-party background-removal API serving approximately 1M uncached image requests per month.",
-        "At approximately $0.01 per image, the third-party run-rate was about $10K per month. A public SageMaker endpoint estimate was about $2K per month for the evaluated in-house path.",
+        "Several creator workflows depended on a third-party background-removal API. The migration question involved model quality, production latency, runtime integration, security boundaries, and operational ownership.",
+        "An in-account AWS path could consolidate those workflows behind shared inference, caching, and quality evaluation.",
       ],
       problem: [
-        "The decision could not rest on model preference alone. The migration plan needed production inference infrastructure, comparable latency data, repeatable quality criteria, and a public-safe financial model.",
+        "The decision could not rest on model preference alone. The migration plan needed production-shaped inference infrastructure, comparable latency data, repeatable quality criteria, and a safe runtime path.",
         "The evaluation also had to be trustworthy when automated verdicts contradicted visual inspection.",
       ],
       ownership: [
@@ -57,18 +105,18 @@ export const caseStudies: readonly CaseStudy[] = [
         "Corrected an input-representation issue and used evaluation evidence to recommend the in-house path.",
       ],
       approach: [
-        "Built a benchmark harness that fanned out to five candidate backends and captured output quality, client latency, and server-side model latency.",
-        "Used blinded model identity, three-vote majority, five matting criteria, pairwise A/B comparisons, and position swapping to reduce ordering bias.",
-        "When the evaluation produced approximately 70-79% false-failure verdicts, traced the issue to the input representation and corrected the judge workflow.",
+        "Built a Python and FastAPI benchmark harness that fanned out to self-hosted and managed model backends, capturing output quality, client latency, and server-side model latency.",
+        "Used blinded model identity, multi-vote review, explicit matting criteria, pairwise comparisons, and position swapping to reduce ordering bias.",
+        "When automated verdicts contradicted visual inspection, traced the failure to flat composite inputs and corrected the judge workflow to inspect the alpha mask.",
       ],
       result: [
-        "The POC validated an AWS-native direction and produced evidence for a lower-cost migration plan.",
-        "Based on current traffic, public vendor pricing, and public SageMaker pricing, the plan was projected to reduce annual run-rate by about $96K, or approximately 80%.",
+        "The proof of concept validated an AWS-native direction and identified a self-hosted model that cleared the quality non-regression gate.",
+        "The integration advanced behind a feature flag with a fail-closed fallback through pre-production validation; production rollout remains pending approval.",
       ],
       decisions: [
         "Used a real-time GPU endpoint for a production-shaped latency comparison rather than only offline model tests.",
         "Used blinded pairwise review because no reliable pixel-level ground truth existed for the production image set.",
-        "Separated projected public cloud pricing from internal discounted cost so the public case study would not expose internal financial details.",
+        "Kept the runtime integration vendor-neutral so the selected backend could change without rewriting each consuming workflow.",
       ],
       lessons: [
         "AI evaluation is a software system. Dataset construction, representation, prompt design, voting, bias controls, and debugging all affect whether a model decision is trustworthy.",
@@ -88,7 +136,7 @@ export const caseStudies: readonly CaseStudy[] = [
     period: "2025",
     tags: ["Java", "AWS", "Multi-region", "Reliability", "Incident response"],
     outcome:
-      "Traffic moved from 1% to 100% over five days, and the launch completed without a customer-facing outage.",
+      "Completed a controlled canary-to-full-production launch after diagnosing and recovering from a live certificate mismatch, with no customer-facing outage.",
     sections: {
       context: [
         "A business-critical content API needed to launch in a new AWS region.",
@@ -101,16 +149,16 @@ export const caseStudies: readonly CaseStudy[] = [
       ],
       approach: [
         "Moved traffic gradually with observable checkpoints and rollback thresholds.",
-        "At 20% traffic, stopped the rollout after downstream requests began returning 502 errors and rolled traffic back to 0%.",
+        "During an intermediate checkpoint, stopped the rollout after downstream requests began returning errors and rolled traffic back safely.",
         "Localized the failure to a certificate-subject mismatch, coordinated renewal and fleet restart with partner teams, verified recovery with the downstream on-call, and resumed the staged rollout.",
       ],
       result: [
-        "The service reached 100% traffic without a customer-facing outage.",
+        "The service reached full production traffic without a customer-facing outage.",
         "The launch plan gave the team a safe path to pause, repair, verify, and resume.",
       ],
       decisions: [
         "Used staged traffic movement so failures would surface before full customer exposure.",
-        "Stopped the rollout at 20% when downstream failures appeared and resumed only after recovery was verified with the partner team.",
+        "Stopped the rollout when downstream failures appeared and resumed only after recovery was verified with the partner team.",
       ],
       lessons: [
         "A strong launch plan is not a script for when everything works. It defines observable checkpoints, rollback thresholds, ownership, and a safe path to resume after the unexpected happens.",
@@ -125,12 +173,12 @@ export const caseStudies: readonly CaseStudy[] = [
     category: "Distributed systems",
     title: "Designing for out-of-order events",
     summary:
-      "Built the first version of an event-driven notification service with race-safe DynamoDB writes and retry handling across three teams.",
+      "Built the first version of an event-driven notification service with race-safe DynamoDB writes and durable retry handling.",
     role: "Initial service designer and backend implementer",
     period: "2024-2026",
     tags: ["Java", "DynamoDB", "SQS/SNS", "Event-driven", "Correctness"],
     outcome:
-      "Designed and built the first version of an event-driven creator-notification service used across three teams, with event-time conditional writes and retry/DLQ handling to preserve correctness under out-of-order events.",
+      "Designed and built the first version of an event-driven creator-notification service, with event-time conditional writes and retry/DLQ handling to preserve correctness under out-of-order events.",
     sections: {
       context: [
         "Creator-facing workflows needed a notification path that multiple teams could use without depending on brittle point-to-point status checks.",
@@ -144,7 +192,7 @@ export const caseStudies: readonly CaseStudy[] = [
         "Designed and built the first service version.",
         "Modeled event-time state updates in DynamoDB.",
         "Added retry and dead-letter handling for failed event processing.",
-        "Worked with three adopting teams on integration expectations.",
+        "Worked across adopting teams on integration expectations.",
       ],
       approach: [
         "Used event timestamps in DynamoDB conditional writes to discard stale state transitions.",
@@ -152,7 +200,7 @@ export const caseStudies: readonly CaseStudy[] = [
         "Kept the public design description at the architectural-pattern level rather than exposing internal service names or message schemas.",
       ],
       result: [
-        "The service gave three teams a shared first version for event-driven creator notifications.",
+        "The service gave multiple teams a shared first version for event-driven creator notifications.",
         "Conditional writes protected correctness when follow and unfollow events arrived out of order.",
       ],
       decisions: [
@@ -177,7 +225,7 @@ export const caseStudies: readonly CaseStudy[] = [
     period: "2023-2024",
     tags: ["OpenAI GPT-4", "RAG", "Neo4j", "Next.js", "D3.js", "Human-centered AI"],
     outcome:
-      "Equal-contribution work published in IEEE Transactions on Visualization and Computer Graphics, recognized with an IEEE VIS 2024 Honorable Mention, and reported a 20% improvement in user comprehension.",
+      "Equal-contribution work published in IEEE Transactions on Visualization and Computer Graphics and recognized with an IEEE VIS 2024 Honorable Mention.",
     sections: {
       context: [
         "The research asked how an interface can help people inspect, connect, and understand health information returned by an LLM instead of accepting a fluent answer at face value.",
@@ -190,7 +238,7 @@ export const caseStudies: readonly CaseStudy[] = [
         "Combined a conversational interface, retrieval-augmented generation, knowledge-graph validation, progressive graph visualization, and recommendation support for follow-up exploration.",
       ],
       result: [
-        "The reported evaluation showed a 20% improvement in user comprehension.",
+        "The reported user study found improved comprehension with the progressive knowledge-graph interface.",
         "The equal-contribution work was published in IEEE Transactions on Visualization and Computer Graphics and recognized with an IEEE VIS 2024 Honorable Mention.",
       ],
       decisions: [

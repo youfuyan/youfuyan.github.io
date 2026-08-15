@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
+import { HeroParticleFlowLoader } from "@/components/HeroParticleFlowLoader";
+import { ScrollRevealController } from "@/components/ScrollRevealController";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { profile } from "@/content/profile";
@@ -26,10 +28,10 @@ export const metadata: Metadata = {
     siteName: "Youfu Yan Portfolio",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/youfu-portrait-og.jpg",
         width: 1200,
         height: 630,
-        alt: "Youfu Yan portfolio preview",
+        alt: "Portrait of Youfu Yan",
       },
     ],
   },
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    images: ["/og-image.svg"],
+    images: ["/youfu-portrait-og.jpg"],
   },
 };
 
@@ -61,8 +63,10 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
+        <HeroParticleFlowLoader />
+        <ScrollRevealController />
         <SiteHeader />
         <main id="main" tabIndex={-1}>
           {children}

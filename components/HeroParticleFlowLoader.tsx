@@ -7,7 +7,9 @@ export function HeroParticleFlowLoader() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 1024px)");
+    const desktop = window.matchMedia(
+      "(min-width: 900px) and (hover: hover) and (pointer: fine)",
+    );
     let active = true;
 
     const update = () => {
