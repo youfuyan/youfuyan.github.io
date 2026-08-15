@@ -2333,15 +2333,22 @@ details[open] .mobile-menu-panel {
 
   .production-note-list article,
   .about-domain-list article {
-    grid-template-columns: 2.5rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
+  }
+
+  .production-note-index,
+  .about-domain-list article > div {
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
   }
 
   .production-note-list article > p,
   .production-note-list .site-tag-list,
   .about-domain-list article > p,
   .about-domain-list .site-tag-list {
-    grid-column: 2;
+    grid-column: 1;
   }
 
   .resume-command-bar .page-shell {

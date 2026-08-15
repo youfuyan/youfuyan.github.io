@@ -84,6 +84,37 @@ test("mobile and desktop layouts avoid horizontal overflow", async ({ page }) =>
   }
 });
 
+test("mobile list metadata stays clear of its heading", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 900 });
+
+  for (const view of [
+    {
+      route: "/about/",
+      rows: ".about-domain-list article",
+      metadata: ":scope > div",
+    },
+    {
+      route: "/work/",
+      rows: ".production-note-list article",
+      metadata: ".production-note-index",
+    },
+  ]) {
+    await page.goto(view.route);
+
+    for (const row of await page.locator(view.rows).all()) {
+      const metadataBox = await row.locator(view.metadata).boundingBox();
+      const headingBox = await row.locator("h3").boundingBox();
+
+      expect(metadataBox).not.toBeNull();
+      expect(headingBox).not.toBeNull();
+      const verticalGap =
+        (headingBox?.y ?? 0) -
+        ((metadataBox?.y ?? 0) + (metadataBox?.height ?? 0));
+      expect(verticalGap).toBeGreaterThanOrEqual(8);
+    }
+  }
+});
+
 test("mobile navigation is compact and keyboard accessible", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 900 });
   await page.goto("/");
