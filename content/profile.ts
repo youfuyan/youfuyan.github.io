@@ -12,48 +12,88 @@ export const profile = {
     eyebrow: "Software Development Engineer at Amazon",
     title: "I build production AI and backend systems that ship.",
     description:
-      "I work across GenAI/ML evaluation, distributed services, and AWS infrastructure — from design and implementation to rollout, monitoring, and the fixes that make systems reliable.",
-    stack: "Java · Python · TypeScript · AWS · SageMaker · Bedrock",
+      "I build and evaluate production AI, design evidence-gated agent workflows, and ship distributed services on AWS — from architecture and implementation to rollout, observability, and on-call.",
+    stack: "AI/ML · Agents · AWS · Distributed systems",
   },
-  impact: [
-    {
-      value: "~1M/month",
-      label: "uncached image requests evaluated for an AWS-native migration",
-    },
-    {
-      value: "~$96K/year",
-      label: "projected run-rate reduction using public cloud pricing",
-      qualifier: "projected",
-    },
-    {
-      value: "1% to 100%",
-      label: "staged regional production traffic shift with no customer-facing outage",
-    },
-    {
-      value: "IEEE VIS 2024",
-      label: "Honorable Mention",
-    },
-  ],
   focusAreas: [
     {
-      title: "AI/ML systems and evaluation",
+      label: "AI / ML",
+      title: "Production AI and evaluation",
       description:
-        "GPU inference, model benchmarking, blinded evaluation, pairwise comparison, bias controls, RAG, and knowledge graphs.",
+        "GPU model serving, multi-backend benchmarking, blinded LLM evaluation, pairwise bias controls, computer vision, RAG, and knowledge grounding.",
+      evidence: "AWS-native image-matting evaluation and runtime integration",
+      skills: ["SageMaker", "Bedrock", "PyTorch", "FastAPI", "LLM evaluation"],
     },
     {
-      title: "Distributed backend services",
+      label: "Agents",
+      title: "Agent systems with control boundaries",
       description:
-        "Event-driven workflows, out-of-order events, idempotency, DynamoDB data modeling, service integrations, and API design.",
+        "Reusable coding and production-support workflows with deterministic checks, browser and observability evidence, read-only defaults, and human-approved writes.",
+      evidence: "Agent-assisted build, test, diagnosis, and review workflows",
+      skills: ["Tool use", "Evaluation", "Browser testing", "CloudWatch", "Human in the loop"],
     },
     {
-      title: "AWS infrastructure and operations",
+      label: "AWS",
+      title: "Cloud platforms and reliability",
       description:
-        "SageMaker, Bedrock, Lambda, DynamoDB, SQS/SNS, CloudWatch, staged rollouts, monitoring, and incident response.",
+        "Multi-region services, staged releases, production observability, incident response, load testing, and infrastructure built with AWS primitives.",
+      evidence: "New-region API launch with controlled rollback and recovery",
+      skills: ["Lambda", "DynamoDB", "SQS/SNS", "CloudWatch", "AWS CDK"],
     },
     {
-      title: "Product engineering",
+      label: "Systems",
+      title: "Distributed product engineering",
       description:
-        "End-to-end delivery across Java services, React workflows, testing, rollout, and production support.",
+        "Event ordering, conditional writes, OAuth ingestion, API design, Java services, React workflows, and end-to-end test infrastructure.",
+      evidence: "Event-driven notifications and external-content ingestion",
+      skills: ["Java", "Spring Boot", "React", "TypeScript", "Playwright"],
+    },
+  ],
+  operatingPrinciples: [
+    {
+      title: "Make evidence part of the system",
+      description:
+        "A model score, agent answer, or passing test is a signal — not a release decision. I design explicit evaluation, observability, and review gates around it.",
+    },
+    {
+      title: "Keep failure reversible",
+      description:
+        "Canary traffic, read-only diagnosis, feature flags, retries, and rollback thresholds create room to learn without turning uncertainty into customer impact.",
+    },
+    {
+      title: "Own the path to production",
+      description:
+        "I stay with a project through architecture, implementation, testing, cross-team integration, rollout, and the operational work after launch.",
+    },
+  ],
+  projectNotes: [
+    {
+      domain: "Agent systems",
+      title: "Agent-assisted engineering workflows",
+      summary:
+        "Helped operationalize reusable workflows across architecture, implementation, browser testing, review follow-ups, and production diagnosis, with deterministic evidence and human release ownership.",
+      tags: ["Agent tool use", "Playwright", "CloudWatch", "Evaluation"],
+    },
+    {
+      domain: "AWS integrations",
+      title: "External-content ingestion",
+      summary:
+        "Designed and implemented production ingestion paths across OAuth account linking, serverless processing, field mapping, durable storage, security analysis, and operational monitoring.",
+      tags: ["Java", "Lambda", "DynamoDB", "OAuth 2.0"],
+    },
+    {
+      domain: "Product systems",
+      title: "Scheduling and content workflows",
+      summary:
+        "Built and tested React and Java workflows for scheduling, rescheduling, editing, and content-state management across multiple content types and locales.",
+      tags: ["React", "Redux", "TypeScript", "Java"],
+    },
+    {
+      domain: "Quality infrastructure",
+      title: "Cross-origin end-to-end testing",
+      summary:
+        "Led a Cypress-to-Playwright migration to cover an embedded third-party workflow, then expanded state and right-to-left marketplace coverage.",
+      tags: ["Playwright", "Cypress", "E2E", "CI/CD"],
     },
   ],
   experience: [
@@ -62,7 +102,7 @@ export const profile = {
       role: "Software Development Engineer",
       period: "June 2024 – Present",
       summary:
-        "Build and operate production AI/ML and distributed systems across AWS, from architecture and model evaluation through implementation, staged rollout, and on-call operations.",
+        "Build and operate production AI/ML, agent-assisted engineering workflows, and distributed services on AWS, from architecture and evaluation through rollout and on-call.",
     },
     {
       company: "Amazon",

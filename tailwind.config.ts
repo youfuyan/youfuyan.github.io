@@ -9,7 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#151714",
+        ink: "#0A0C0E",
+        bone: "#EDE7DC",
+        amber: "#E8913C",
+        teal: "#65A4A8",
+        noir: "#0A0C0E",
+        "noir-soft": "#101317",
         muted: "#5d6674",
         line: "#d8dde4",
         paper: "#f4f5f7",
@@ -19,11 +24,11 @@ const config: Config = {
         success: "#0f766e",
         "success-soft": "#ecfdf5",
         "dark-muted": "#aeb7c4",
-        "dark-line": "#343834",
+        "dark-line": "rgba(237, 231, 220, 0.13)",
         research: "#e8f0eb",
       },
       fontFamily: {
-        display: ["Georgia", '"Times New Roman"', "serif"],
+        display: ['"Arial"', '"Helvetica Neue"', "sans-serif"],
         mono: ["SFMono-Regular", "Consolas", '"Liberation Mono"', "monospace"],
       },
       boxShadow: {

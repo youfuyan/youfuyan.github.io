@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { Container } from "@/components/Container";
+import { ContactCTA } from "@/components/ContactCTA";
 import { PageHeader } from "@/components/PageHeader";
+import { TagList } from "@/components/TagList";
+import { workCaseStudies } from "@/content/caseStudies";
 import { profile } from "@/content/profile";
 
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Readable resume summary for Youfu Yan, Software Development Engineer at Amazon.",
+    "Readable resume for Youfu Yan, Software Development Engineer focused on production AI, agents, distributed systems, and AWS.",
   alternates: {
     canonical: "/resume/",
   },
@@ -16,202 +18,151 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <>
+    <div className="interior-page resume-page">
       <PageHeader
         eyebrow="Resume"
         title="Youfu Yan"
-        description="Software Development Engineer at Amazon. Production AI/ML systems, distributed backend services, AWS infrastructure, and research-backed evaluation."
+        description="Software Development Engineer at Amazon building production AI, evidence-gated agent workflows, distributed services, and reliable AWS systems."
+        index="RESUME / 04"
+        signal="NEW YORK / SOFTWARE ENGINEERING"
       />
-      <Container as="section" className="pb-20">
-        <div className="max-w-3xl">
-          <div className="flex flex-wrap gap-3 border-y border-line py-5 text-sm">
-            <Link
-              href={`mailto:${profile.email}`}
-              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-            >
+
+      <section className="resume-command-bar">
+        <div className="page-shell">
+          <div className="resume-links">
+            <Link href={`mailto:${profile.email}`} className="site-text-link pressable">
               {profile.email}
             </Link>
-            <Link
-              href={profile.links.linkedin}
-              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
+            <Link href={profile.links.linkedin} className="site-text-link pressable" target="_blank" rel="noreferrer">
+              LinkedIn ↗
             </Link>
-            <Link
-              href={profile.links.github}
-              className="pressable font-semibold text-accent hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
+            <Link href={profile.links.github} className="site-text-link pressable" target="_blank" rel="noreferrer">
+              GitHub ↗
             </Link>
           </div>
+          <Link href="/Youfu_Yan_Public_Resume.pdf" className="site-primary-button pressable">
+            Download PDF <span aria-hidden="true">↓</span>
+          </Link>
+        </div>
+      </section>
 
-          <section className="py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">Summary</h2>
-            <p className="mt-4 text-base leading-7 text-muted">
-              Software Development Engineer with 2+ years at Amazon building and
-              operating production AI/ML and distributed systems across AWS. Owns
-              ambiguous cross-team work from architecture and model evaluation
-              through implementation, staged rollout, and on-call operations.
-              Equal-contribution first author of IEEE VIS 2024 Honorable Mention
-              research on LLM and knowledge graph systems.
+      <section className="site-section">
+        <div className="page-shell resume-layout">
+          <aside className="resume-section-label">
+            <span>01</span>
+            <p>Profile</p>
+          </aside>
+          <div className="resume-summary">
+            <h2>I build systems where intelligence has to survive production.</h2>
+            <p>
+              My work spans GPU inference and model evaluation, reusable agent
+              workflows, event-driven backends, cloud infrastructure, product
+              interfaces, release engineering, and on-call operations. I own ambiguous
+              work end to end and make uncertainty visible through evaluation,
+              observability, and staged delivery.
             </p>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              Technical skills
-            </h2>
-            <div className="mt-5 space-y-4 text-sm leading-6 text-muted">
-              <p>
-                <strong className="font-semibold text-ink">AI/ML and GenAI:</strong>{" "}
-                Amazon SageMaker, AWS Bedrock, PyTorch, LLM-as-a-judge evaluation,
-                pairwise A/B testing, RAG, knowledge graphs, prompt engineering,
-                image matting and segmentation.
-              </p>
-              <p>
-                <strong className="font-semibold text-ink">Languages:</strong> Java,
-                Python, TypeScript, JavaScript, SQL, C/C++, Bash.
-              </p>
-              <p>
-                <strong className="font-semibold text-ink">Backend and cloud:</strong>{" "}
-                Spring Boot, REST APIs, AWS Lambda, DynamoDB, SQS/SNS, S3,
-                CloudWatch, event-driven architecture, microservices, OAuth 2.0,
-                multi-region deployment, AWS CDK, Docker.
-              </p>
-              <p>
-                <strong className="font-semibold text-ink">Frontend and quality:</strong>{" "}
-                React, Redux, Next.js, React Native, D3.js, Playwright, Cypress,
-                JUnit, Mockito, Jest, integration/load/stress testing.
-              </p>
-            </div>
-          </section>
+      <section className="site-section site-section-soft">
+        <div className="page-shell resume-layout">
+          <aside className="resume-section-label">
+            <span>02</span>
+            <p>Domains</p>
+          </aside>
+          <div className="resume-domain-grid">
+            {profile.focusAreas.map((area) => (
+              <article key={area.title}>
+                <p>{area.label}</p>
+                <h2>{area.title}</h2>
+                <p>{area.description}</p>
+                <TagList tags={area.skills} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              Experience
-            </h2>
-            <div className="mt-5 space-y-6">
-              {profile.experience.map((item) => (
-                <article key={`${item.company}-${item.role}`}>
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                    <h3 className="font-semibold text-ink">
-                      {item.company} - {item.role}
-                    </h3>
-                    <p className="text-sm font-medium text-muted">{item.period}</p>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-muted">{item.summary}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+      <section className="site-section">
+        <div className="page-shell resume-layout">
+          <aside className="resume-section-label">
+            <span>03</span>
+            <p>Experience</p>
+          </aside>
+          <div className="resume-experience-list">
+            {profile.experience.map((item) => (
+              <article key={`${item.company}-${item.role}`}>
+                <div>
+                  <p>{item.company}</p>
+                  <h2>{item.role}</h2>
+                </div>
+                <p>{item.summary}</p>
+                <p>{item.period}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              Selected work
-            </h2>
-            <div className="mt-5 space-y-5 text-sm leading-6 text-muted">
-              <p>
-                <strong className="font-semibold text-ink">
-                  AI/ML platform migration:
-                </strong>{" "}
-                Designed and drove an AWS-native background-removal migration plan
-                for approximately 1M uncached image requests per month; projected to
-                reduce annual run-rate by about $96K, or approximately 80%, versus
-                the third-party API based on current traffic, $0.01/request vendor
-                pricing, and an estimated $2K/month hosted endpoint.
-              </p>
-              <p>
-                <strong className="font-semibold text-ink">
-                  Distributed systems and production reliability:
-                </strong>{" "}
-                Owned the launch of a business-critical content API in a new AWS
-                region and executed a staged 1% to 100% traffic shift; diagnosed a
-                live certificate mismatch at 20%, rolled back safely, coordinated
-                the fix, and completed the launch with no customer-facing outage.
-              </p>
-              <p>
-                Designed and built the first version of an event-driven
-                creator-notification service used across three teams, including
-                event-time DynamoDB conditional writes and retry/DLQ handling to
-                preserve correctness under out-of-order events.
-              </p>
-              <p>
-                Drove production content-ingestion workflows for a program
-                supporting approximately 2,300 creators and 85K ingested items;
-                contributed to a scheduling platform serving 8,000+ creators across
-                256K+ workflows.
-              </p>
-            </div>
-          </section>
+      <section className="site-section site-section-soft">
+        <div className="page-shell resume-layout">
+          <aside className="resume-section-label">
+            <span>04</span>
+            <p>Selected systems</p>
+          </aside>
+          <div className="resume-project-list">
+            {workCaseStudies.map((study, index) => (
+              <article key={study.slug}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <p>{study.category}</p>
+                  <h2>
+                    <Link href={`/work/${study.slug}/`} className="pressable">
+                      {study.title}
+                    </Link>
+                  </h2>
+                  <p>{study.summary}</p>
+                </div>
+                <span aria-hidden="true">↗</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              Technical focus
-            </h2>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              {profile.focusAreas.map((area) => (
-                <article key={area.title}>
-                  <h3 className="font-semibold text-ink">{area.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted">
-                    {area.description}
+      <section className="site-section">
+        <div className="page-shell resume-layout">
+          <aside className="resume-section-label">
+            <span>05</span>
+            <p>Research & education</p>
+          </aside>
+          <div className="resume-credentials">
+            <article>
+              <p className="page-kicker">Publication</p>
+              <h2>KNOWNet: Guided Health Information Seeking from LLMs via Knowledge Graph Integration</h2>
+              <p>
+                Equal-contribution first author. IEEE Transactions on Visualization
+                and Computer Graphics. IEEE VIS 2024 Honorable Mention.
+              </p>
+            </article>
+            <div className="education-list">
+              {profile.education.map((item) => (
+                <article key={`${item.school}-${item.degree}`}>
+                  <h3>{item.school}</h3>
+                  <p>
+                    {item.degree}
+                    {"detail" in item && item.detail ? ` / ${item.detail}` : ""}
                   </p>
                 </article>
               ))}
+              <p className="certification-line">{profile.certification}</p>
             </div>
-          </section>
-
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              Publication
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-muted">
-              <strong className="font-semibold text-ink">
-                KNOWNET: Guided Health Information Seeking from LLMs via Knowledge
-                Graph Integration
-              </strong>
-              . Youfu Yan*, Yu Hou*, Yongkang Xiao, Rui Zhang, Qianwen Wang (*equal
-              contribution). IEEE TVCG. IEEE VIS 2024 Honorable Mention.
-            </p>
-          </section>
-
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">Education</h2>
-            <div className="mt-5 space-y-4 text-sm leading-6 text-muted">
-              {profile.education.map((item) => (
-                <p key={`${item.school}-${item.degree}`}>
-                  <strong className="font-semibold text-ink">{item.school}</strong> -{" "}
-                  {item.degree}
-                  {"detail" in item && item.detail ? `, ${item.detail}` : ""}
-                </p>
-              ))}
-            </div>
-            <p className="mt-5 text-sm leading-6 text-muted">
-              <strong className="font-semibold text-ink">Certification:</strong>{" "}
-              {profile.certification}
-            </p>
-          </section>
-
-          <section className="border-t border-line py-8">
-            <h2 className="text-xl font-semibold tracking-normal text-ink">
-              PDF download
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-muted">
-              The PDF uses the same public-safe source content as this page and
-              intentionally excludes a phone number.
-            </p>
-            <Link
-              href="/Youfu_Yan_Public_Resume.pdf"
-              className="pressable mt-5 inline-flex rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-            >
-              Download PDF
-            </Link>
-          </section>
+          </div>
         </div>
-      </Container>
-    </>
+      </section>
+
+      <ContactCTA />
+    </div>
   );
 }

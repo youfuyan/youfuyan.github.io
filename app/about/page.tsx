@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { Container } from "@/components/Container";
+import { ContactCTA } from "@/components/ContactCTA";
 import { PageHeader } from "@/components/PageHeader";
+import { TagList } from "@/components/TagList";
 import { profile } from "@/content/profile";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Youfu Yan: software development engineer focused on production AI systems, backend reliability, AWS infrastructure, and evaluation.",
+    "About Youfu Yan: a software engineer working across production AI, agent systems, AWS reliability, and distributed product engineering.",
   alternates: {
     canonical: "/about/",
   },
@@ -17,76 +18,121 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="interior-page">
       <PageHeader
         eyebrow="About"
-        title="I work on systems where model behavior, backend reliability, and product execution meet."
-        description="I’m a software engineer at Amazon working across AI/ML evaluation, distributed backend services, and AWS infrastructure."
+        title="I like systems that have to earn trust."
+        description="My work sits where model behavior, agent control boundaries, backend reliability, and product execution meet."
+        index="ABOUT / 03"
+        signal="ENGINEERING / RESEARCH / OPERATIONS"
       />
-      <Container as="section" className="pb-20">
-        <div className="max-w-3xl space-y-6 text-base leading-7 text-muted">
-          <p>
-            I’m most interested in problems that require both production engineering
-            and careful measurement: how a model should be evaluated, how a service
-            behaves under failure, and how a system moves safely from design to real
-            traffic.
-          </p>
-          <p>
-            My recent work spans GenAI/ML evaluation, GPU inference infrastructure,
-            distributed backend services, staged production launches, event-driven
-            correctness, and React product workflows.
-          </p>
-          <p>
-            My background in computer science, statistics, and quantitative methods
-            shapes how I approach engineering decisions: define the signal, control
-            the comparison, measure what can be measured, and leave enough
-            operational room for the system to fail safely.
-          </p>
-          <p>
-            Before my current SDE role, I built a cross-platform real-time
-            notification system during an Amazon internship and co-developed KNOWNet
-            at the University of Minnesota, combining LLMs, retrieval, Neo4j,
-            Next.js, and D3.js for more verifiable health-information seeking.
-          </p>
-          <p>
-            I’m interested in teams where AI systems, backend reliability, and
-            product execution overlap: systems that need thoughtful evaluation,
-            careful rollout, and engineers who can own the path from design to
-            operation.
-          </p>
-          <div className="flex flex-wrap gap-3 pt-3">
-            <Link
-              href={routes.work}
-              className="pressable rounded-sm bg-ink px-4 py-3 text-sm font-semibold text-white hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-            >
-              View selected work
-            </Link>
-            <Link
-              href={routes.resume}
-              className="pressable rounded-sm border border-line bg-white px-4 py-3 text-sm font-semibold text-ink hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
-            >
-              Read resume
-            </Link>
+
+      <section className="site-section">
+        <div className="page-shell about-intro-grid">
+          <div>
+            <p className="page-kicker">Current practice</p>
+            <h2>Production depth with an evaluation mindset.</h2>
+          </div>
+          <div className="longform-copy">
+            <p>
+              I am a Software Development Engineer at Amazon building production AI
+              integrations, agent-assisted engineering workflows, distributed backend
+              services, and AWS infrastructure. I usually enter when the problem is
+              still ambiguous and stay through design, implementation, validation,
+              rollout, and operations.
+            </p>
+            <p>
+              My AI work combines GPU inference with evaluation design: production-shaped
+              benchmarks, blinded model comparisons, bias controls, and debugging the
+              evaluation itself when automated judgment diverges from reality.
+            </p>
+            <p>
+              My agent work follows the same principle. Agents can accelerate coding,
+              testing, diagnosis, and review, but their output needs deterministic
+              checks, observable evidence, read-only defaults, and clear human ownership
+              of writes and releases.
+            </p>
+            <p>
+              A background in computer science, statistics, and quantitative methods
+              shapes how I make decisions: define the signal, control the comparison,
+              and design a reversible path through uncertainty.
+            </p>
+            <div className="inline-actions">
+              <Link href={routes.work} className="site-primary-button pressable">
+                Explore selected work <span aria-hidden="true">↗</span>
+              </Link>
+              <Link href={routes.resume} className="site-secondary-button pressable">
+                Read the resume <span aria-hidden="true">↓</span>
+              </Link>
+            </div>
           </div>
         </div>
-        <section className="mt-14 max-w-3xl border-t border-line pt-8">
-          <h2 className="font-display text-2xl font-semibold tracking-normal text-ink">Education</h2>
-          <div className="mt-5 grid border-l border-t border-line">
-            {profile.education.map((item) => (
-              <article
-                key={`${item.school}-${item.degree}`}
-                className="border-b border-r border-line bg-white p-5"
-              >
-                <h3 className="font-semibold text-ink">{item.school}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">
-                  {item.degree}
-                  {"detail" in item && item.detail ? `, ${item.detail}` : ""}
-                </p>
+      </section>
+
+      <section className="site-section site-section-soft">
+        <div className="page-shell">
+          <header className="section-intro">
+            <p className="page-kicker">Engineering domains</p>
+            <h2>A connected systems practice.</h2>
+          </header>
+          <div className="about-domain-list">
+            {profile.focusAreas.map((area, index) => (
+              <article key={area.title}>
+                <div>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <p>{area.label}</p>
+                </div>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
+                <TagList tags={area.skills} />
               </article>
             ))}
           </div>
-        </section>
-      </Container>
-    </>
+        </div>
+      </section>
+
+      <section className="site-section">
+        <div className="page-shell principle-grid">
+          <header className="section-intro">
+            <p className="page-kicker">How I operate</p>
+            <h2>Good systems leave room to verify.</h2>
+          </header>
+          <div className="principle-list">
+            {profile.operatingPrinciples.map((principle, index) => (
+              <article key={principle.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{principle.title}</h3>
+                  <p>{principle.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="site-section site-section-soft">
+        <div className="page-shell education-grid">
+          <header className="section-intro">
+            <p className="page-kicker">Education</p>
+            <h2>Computer science, statistics, and quantitative methods.</h2>
+          </header>
+          <div className="education-list">
+            {profile.education.map((item) => (
+              <article key={`${item.school}-${item.degree}`}>
+                <h3>{item.school}</h3>
+                <p>
+                  {item.degree}
+                  {"detail" in item && item.detail ? ` / ${item.detail}` : ""}
+                </p>
+              </article>
+            ))}
+            <p className="certification-line">{profile.certification}</p>
+          </div>
+        </div>
+      </section>
+
+      <ContactCTA />
+    </div>
   );
 }
