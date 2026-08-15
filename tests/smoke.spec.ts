@@ -213,8 +213,10 @@ test("landing copy receives a subtle one-time reveal while scrolling", async ({ 
 });
 
 test("portal stays pinned until its panels fully reveal the portrait", async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.setViewportSize({ width: 899, height: 900 });
   await page.goto("/");
+
+  await expect(page.locator(".global-particle-canvas")).toHaveCount(0);
 
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = "auto";
