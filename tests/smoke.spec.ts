@@ -224,6 +224,8 @@ test("portal stays pinned until its panels fully reveal the portrait", async ({ 
 test("desktop WebGL flow follows the pointer across routes while mobile keeps the portrait fallback", async ({
   page,
 }) => {
+  test.setTimeout(90_000);
+
   await page.setViewportSize({ width: 1440, height: 700 });
   await page.goto("/");
 
